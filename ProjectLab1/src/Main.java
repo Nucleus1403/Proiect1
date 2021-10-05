@@ -1,14 +1,18 @@
-import java.util.Scanner;
 public class Main
 {
     public static void main(String[] args)
     {
-        Methods.GetInstance().GenerateCards();
+        Blackjack blackJack = Blackjack.GetInstance();
 
-        for (int i = 0; i < 52; i++) {
-            System.out.println(Methods.DeckOfCards[i].GetCardType()+ " "+Methods.DeckOfCards[i].GetCardValue());
+        blackJack.StartGame();
+        do {
+            blackJack.Shuffle();
+            blackJack.DealCards();
+            blackJack.PrintStatus();
+            blackJack.CheckBlackjack();
+            blackJack.HitOrStand();
+            blackJack.DealerPlays();
 
-        }
-
+        } while (blackJack.PlayAgain());
     }
 }
