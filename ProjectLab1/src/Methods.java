@@ -1,7 +1,12 @@
+import java.io.IOException;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.Random;
 public class Methods
 {
     private static Methods methods = null;
     public static Cards[] DeckOfCards= new Cards[52];
+    private static Random rnd = new Random();
 
     private Methods()
     {
@@ -28,8 +33,42 @@ public class Methods
     {
         for (int i = start; i < end; i++)
         {
-            CardsDeck[i]=new Cards(i, cardType);
+            CardsDeck[i]=new Cards(i, cardType,false);
         }
     }
+
+    public static Cards PullCard()
+    {
+
+        int a = rnd.nextInt(DeckOfCards.length-1);
+        Cards card = DeckOfCards[a];
+        if(DeckOfCards[a].GetIsTaken())
+        {
+            if(a>25)
+            {
+                for (int i = 0; i < 25; i++) {
+                    if(DeckOfCards[i].GetIsTaken()==false)
+                    {
+                        card= DeckOfCards[i];
+                        DeckOfCards[i].SetCardTaken(true);
+                    }
+                }
+            }else
+            {
+                for (int i = 26; i < 51; i++) {
+                    if(DeckOfCards[i].GetIsTaken()==false)
+                    {
+                        card= DeckOfCards[i];
+                        DeckOfCards[i].SetCardTaken(true);
+                    }
+                }
+            }
+        }
+        else
+            DeckOfCards[a].SetCardTaken(true);
+
+        return card;
+    }
+
 
 }
