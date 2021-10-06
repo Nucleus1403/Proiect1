@@ -28,12 +28,10 @@ public class Blackjack {
         System.out.println("	-Players “Hit” to gain another card from the deck. Players “Stay” to keep their current card total.");
         System.out.println("	-Dealer “Hits” until they equal or exceed 17.");
         System.out.println("	-The goal is to have a higher card total than the dealer without going over 21.");
-        System.out.println("	-If the player total equals the dealer total, it is a “Push” and the hand ends.");
         System.out.println("");
         System.out.println("");
 
         deck = new DeckOfCards();
-        GameOver = false;
     }
 
     public void Shuffle() {
@@ -90,6 +88,7 @@ public class Blackjack {
             if (c == 'H') {
                 player.AddCard(deck.NextCard());
                 if (player.GetTotal() == 21) {
+                    System.out.println("Player has " + player.GetHandString());
                     System.out.println("Player won");
                     GameOver = true;
                 } else if (player.GetTotal() > 21) {
@@ -108,6 +107,30 @@ public class Blackjack {
         if (GameOver)
             return;
         dealer.DealerPlay(deck);
+
+        if(dealer.GetTotal()>21)
+        {
+            System.out.println("Player won");
+        }else if(dealer.GetTotal()==21)
+            {
+                System.out.println("Player loses");
+            }
+        else
+        {
+            if(player.GetTotal()<21)
+            {
+
+                if(player.GetTotal()>dealer.GetTotal())
+                {
+                    System.out.println("Player won");
+                }else if(player.GetTotal()==dealer.GetTotal())
+                {
+                    System.out.println("Player return");
+                }else System.out.println("Player loses");
+
+            }
+
+        }
     }
 
     public void PrintStatus() {

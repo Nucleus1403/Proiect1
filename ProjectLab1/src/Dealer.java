@@ -33,6 +33,12 @@ public class Dealer {
         hand.ClearHand();
     }
 
+    public int GetTotal()
+    {
+        return hand.CalculateTotal();
+    }
+
+
     public boolean Peek() {
         return hand.DealerPeek();
     }
