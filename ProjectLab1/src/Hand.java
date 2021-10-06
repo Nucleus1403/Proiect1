@@ -1,7 +1,7 @@
 public class Hand {
     private Card[] theHand = new Card[12];
 
-    private int numberOfCards = 0;
+    protected int numberOfCards = 0;
 
     public int CalculateTotal() {
         int total = 0;
@@ -31,19 +31,14 @@ public class Hand {
         boolean aceFlag = false;
         String aceString = "";
         for (int i = 0; i < numberOfCards; i++) {
-            if (isDealer && hideHoleCard && i == 0) {
+            if (isDealer && hideHoleCard && i == 0)
+            {
                 str = " Showing";
-            } else {
+            } else
+            {
                 int value = theHand[i].GetValue();
-                String valueName;
-                if (value > 10) {
-                    valueName = theHand[i].GetValueName();
-                } else if (value == 1) {
-                    valueName = "A";
-                } else {
-                    valueName = Integer.toString(value);
-                }
-                str += " " + valueName + theHand[i].GetSuitDesignator();
+
+                str += " " + theHand[i].ToString();
                 if (value > 10) {
                     value = 10;
                 } else if (value == 1) {

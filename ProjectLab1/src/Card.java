@@ -8,9 +8,9 @@ public class Card {
 
     }
 
-    public String toString() {
+    public String ToString() {
 
-        return GetSuitName() + " " + this.value;
+        return GetSuitName() + "-" + this.value;
 
     }
 

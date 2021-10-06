@@ -90,7 +90,7 @@ public class Blackjack {
             if (c == 'H') {
                 player.AddCard(deck.NextCard());
                 if (player.GetTotal() == 21) {
-                    System.out.println("Player pushes");
+                    System.out.println("Player won");
                     GameOver = true;
                 } else if (player.GetTotal() > 21) {
                     GameOver = true;
@@ -101,11 +101,10 @@ public class Blackjack {
             }
 
         } while (c != 'S' && player.GetTotal() <= 21);
-
-
     }
 
     public void DealerPlays() {
+
         if (GameOver)
             return;
         dealer.DealerPlay(deck);
